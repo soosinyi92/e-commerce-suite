@@ -5,8 +5,11 @@
 
 package fr.dauphine.ecommerce.model;
 
+import fr.dauphine.ecommerce.service.exceptions.CartException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,17 +17,26 @@ import java.util.List;
  */
 public class Cart {
 
-    private List<CartItem> items;
+    private Map<Long, CartItem> items;
 
     public Cart() {
-        items = new ArrayList<CartItem>();
+        items = new HashMap<Long, CartItem>();
     }
 
-    public List<CartItem> getItems() {
+    public Map<Long, CartItem> getItems() {
         return items;
     }
 
-    public void setItems(List<CartItem> items) {
+    public CartItem getItem(Long productId) throws CartException {
+        if (items.containsKey(productId)) {
+            return items.get(productId);
+        }
+        else {
+            throw new CartException("Product " + productId + " not in cart");
+        }
+    }
+
+    public void setItems(Map<Long, CartItem> items) {
         this.items = items;
     }
 

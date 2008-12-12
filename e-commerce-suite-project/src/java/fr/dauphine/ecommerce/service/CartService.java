@@ -6,6 +6,7 @@
 package fr.dauphine.ecommerce.service;
 
 import fr.dauphine.ecommerce.model.Cart;
+import fr.dauphine.ecommerce.service.exceptions.CartException;
 
 /**
  *
@@ -14,7 +15,7 @@ import fr.dauphine.ecommerce.model.Cart;
 public interface CartService {
 
     public Cart refreshCart(Cart cart);
-    public Cart addToCart(Cart cart, Long productId);
+    public Cart addToCart(Cart cart, Long productId) throws CartException;
     public Cart removeFromCart(Cart cart, Long productId);
 
 }
