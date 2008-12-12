@@ -21,7 +21,9 @@ public class CartServiceImpl implements CartService {
     private StockService stockService;
 
     public Cart refreshCart(Cart cart) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        return null;
+
     }
 
     protected boolean isProductInCart(Cart cart, Long productId) {
