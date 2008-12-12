@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package fr.dauphine.ecommerce.service.exceptions;
+package fr.dauphine.ecommerce.exceptions;
 
 /**
  *
