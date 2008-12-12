@@ -25,32 +25,37 @@
         %>
         
         <% if (size == 0) { %>
-            <h1>Votre panier ne comprends aucun article</h1>;
+            <h1>Votre panier ne comprends aucun article</h1>
         <% } else { %>
             <h1>Votre panier comprends <%=size%> article<%=plural%></h1>
         <% } %>
         
         <% if (size > 0) { %>
-            <table width='600px' border='0'>
+            <table width="600px" border="0">
                 <tr>
-                    <th align='left'>Ref.<th>
-                    <th align='left'>Album<th>
-                    <th align='center'>Quantité<th>
-                    <th align='center'>Quantité Stock<th>
-                    <th align='center'>Prix<th>
+                    <th>*</th>
+                    <th align="left">Ref.</th>
+                    <th align="left">Album</th>
+                    <th align="center">Quantité</th>
+                    <th align="center">Quantité Stock</th>
+                    <th align="center">Prix</th>
                 </tr>
                 
                 <% for (CartItem article : cart.getItems().values()) { %>
                     <tr>
-                        <td><%=article.getProduct().getId()%><td>
-                        <td><%=article.getProduct().getName()%><td>
-                        <td align='center'><%=article.getQuantity()%><td>
-                        <td align='center' style="color: gray"><%=article.getQuantityStock()%><td>
-                        <td align='center'><%=article.getProduct().getPrice()%><td>
+                        <td><a href="remove?ref=<%=article.getProduct().getId()%>">Remove</a></td>
+
+                        <td><%=article.getProduct().getId()%></td>
+                        <td><%=article.getProduct().getName()%></td>
+                        <td align="center"><%=article.getQuantity()%></td>
+                        <td align="center" style="color: gray"><%=article.getQuantityStock()%></td>
+                        <td align="center"><%=article.getProduct().getPrice()%></td>
                     </tr>
                 <%}%>
 
             </table>
+        <% } else { %>
+            <span>Panier vide</span>
         <% } %>
     </body>
 </html>

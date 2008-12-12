@@ -32,28 +32,28 @@
         <% if (size > 0) { %>
             <table width='600px' border='0'>
                 <tr>
-                    <th align='center'><th>
-                    <th align='left'>Ref.<th>
-                    <th align='left'>Album<th>
-                    <th align='center'>QuantitÃ©<th>
-                    <th align='center'>Prix<th>
+                    <th align='center'></th>
+                    <th align='left'>Ref.</th>
+                    <th align='left'>Album</th>
+                    <th align='center'>Quantité</th>
+                    <th align='center'>Prix</th>
                 </tr>
                 
                 <% for (ProductStock article : articles) { %>
                     <tr>
 
                         <% if (article.getQuantity() > 0) { %>
-                            <td><a href='ajouter?ref=<%=article.getProduct().getId()%>'><img border='0' src='boutons/caddie-ad.gif' /></a><td>
+                            <td><a href='ajouter?ref=<%=article.getProduct().getId()%>'><img border='0' src='boutons/caddie-ad.gif' /></a></td>
                         <% } else { %>
                             <td>
                                 <img border="0" src="boutons/caddie-ad.gif" style="filter:alpha(opacity=50); opacity: 0.5; -moz-opacity:0.5;" />
-                            <td>
+                            </td>
                         <% } %>
 
-                        <td><%=article.getProduct().getId()%><td>
-                        <td><%=article.getProduct().getName()%><td>
-                        <td align='center'><%=article.getQuantity()%><td>
-                        <td align='center'><%=article.getProduct().getPrice()%><td>
+                        <td><%=article.getProduct().getId()%></td>
+                        <td><%=article.getProduct().getName()%></td>
+                        <td align='center'><%=article.getQuantity()%></td>
+                        <td align='center'><%=article.getProduct().getPrice()%></td>
                     </tr>
                 <%}%>
 

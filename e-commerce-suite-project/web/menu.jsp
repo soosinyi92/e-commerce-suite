@@ -12,6 +12,6 @@
         <a href="home.jsp" target="main"><img border="0" src="boutons/accueil.gif" /></a><br/><br/>
         <a href="catalog" target="main"><img border="0" src="boutons/catalog.gif" /></a><br/><br/>
         <a href="panier" target="main"><img border="0" src="boutons/panier.gif" /></a><br/><br/>
-        <a href="checkout" target="main"><img border="0" src="boutons/facturation.gif" /></a><br/><br/>
+        <a href="order" target="main"><img border="0" src="boutons/facturation.gif" /></a><br/><br/>
     </body>
 </html>
