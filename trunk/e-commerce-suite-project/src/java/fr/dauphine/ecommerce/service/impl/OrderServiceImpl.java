@@ -13,4 +13,8 @@ import fr.dauphine.ecommerce.service.OrderService;
  */
 public class OrderServiceImpl implements OrderService {
 
+
+    //stockService.updateProductStockQuantity(productId, 1);
+
+    
 }

@@ -5,6 +5,9 @@
 
 package fr.dauphine.ecommerce.service.impl;
 
+import fr.dauphine.ecommerce.dao.StockDao;
+import fr.dauphine.ecommerce.dao.impl.StockDaoJdbcImpl;
+import fr.dauphine.ecommerce.dao.impl.StockDaoMockImpl;
 import fr.dauphine.ecommerce.model.ProductStock;
 import fr.dauphine.ecommerce.service.StockService;
 import java.util.List;
@@ -15,12 +18,14 @@ import java.util.List;
  */
 public class StockServiceImpl implements StockService {
 
+    private StockDao stockDao = new StockDaoMockImpl();
+
     public List<ProductStock> searchProductStock() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return stockDao.searchProductStock();
     }
 
     public ProductStock getProductStock(Long productId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return stockDao.getProductStock(productId);
     }
 
     public void updateProductStockQuantity(Long productId, Integer quantity) {
