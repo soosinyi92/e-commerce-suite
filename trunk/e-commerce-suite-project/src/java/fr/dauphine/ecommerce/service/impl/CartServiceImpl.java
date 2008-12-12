@@ -10,7 +10,7 @@ import fr.dauphine.ecommerce.model.CartItem;
 import fr.dauphine.ecommerce.model.ProductStock;
 import fr.dauphine.ecommerce.service.CartService;
 import fr.dauphine.ecommerce.service.StockService;
-import fr.dauphine.ecommerce.service.exceptions.CartException;
+import fr.dauphine.ecommerce.exceptions.CartException;
 
 /**
  *
@@ -51,8 +51,17 @@ public class CartServiceImpl implements CartService {
         return cart;
     }
 
-    public Cart removeFromCart(Cart cart, Long productId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Cart removeFromCart(Cart cart, Long productId) throws CartException {
+        if (isProductInCart(cart, productId)) {
+            CartItem cartItem = cart.getItem(productId);
+            Integer oldQuantity = cart.getItem(productId).getQuantity();
+            cartItem.setQuantity(oldQuantity - 1);
+            // Remove if quantity = 0
+            if (cartItem.getQuantity() == 0) {
+                cart.getItems().remove(productId);
+            }
+        }
+        return cart;
     }
 
 }
