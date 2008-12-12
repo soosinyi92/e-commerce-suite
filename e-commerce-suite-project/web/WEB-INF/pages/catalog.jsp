@@ -43,7 +43,7 @@
                     <tr>
 
                         <% if (article.getQuantity() > 0) { %>
-                            <td><a href='ajoutPanier?ref=" + article.getProduct().getId() + "'><img border='0' src='boutons/caddie-ad.gif' /></a><td>
+                            <td><a href='ajouter?ref=<%=article.getProduct().getId()%>'><img border='0' src='boutons/caddie-ad.gif' /></a><td>
                         <% } else { %>
                             <td>
                                 <img border="0" src="boutons/caddie-ad.gif" style="filter:alpha(opacity=50); opacity: 0.5; -moz-opacity:0.5;" />
