@@ -5,7 +5,7 @@
 
 package fr.dauphine.ecommerce.model;
 
-import fr.dauphine.ecommerce.service.exceptions.CartException;
+import fr.dauphine.ecommerce.exceptions.CartException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
