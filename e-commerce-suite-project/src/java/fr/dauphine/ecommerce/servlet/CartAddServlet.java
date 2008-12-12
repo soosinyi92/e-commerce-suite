@@ -2,38 +2,34 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package fr.dauphine.ecommerce.servlet;
 
 import fr.dauphine.ecommerce.model.Cart;
-import fr.dauphine.ecommerce.model.Product;
-import fr.dauphine.ecommerce.model.ProductStock;
-import fr.dauphine.ecommerce.service.CatalogService;
+import fr.dauphine.ecommerce.service.CartService;
+import fr.dauphine.ecommerce.service.exceptions.CartException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CatalogServlet extends HttpServlet {
+public class CartAddServlet extends HttpServlet {
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        CatalogService catalogService = (CatalogService)getServletContext().getAttribute("catalogService");
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        CartService cartService = (CartService)getServletContext().getAttribute("cartService");
+        
+        Long productId = Long.parseLong(request.getParameter("ref"));
         
         Cart cart = Utils.getCart(request.getSession());
-        List<ProductStock> articles = catalogService.searchCatalogue(cart);
-        
-        request.setAttribute("articles", articles);
-        
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/catalog.jsp");
-        rd.forward(request, response);
-
-    } 
+        try {
+            cartService.addToCart(cart, productId);
+        }
+        catch (CartException ex) {
+            ex.printStackTrace();
+        }
+        // Rediriger vers le catalogue, et continuer a selectioner
+        response.sendRedirect("catalog");
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -45,9 +41,9 @@ public class CatalogServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -58,7 +54,7 @@ public class CatalogServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -70,5 +66,4 @@ public class CatalogServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

@@ -27,6 +27,15 @@ public class Cart {
         return items;
     }
 
+    public boolean containsProduct(Long productId) {
+        if (items.containsKey(productId)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public CartItem getItem(Long productId) throws CartException {
         if (items.containsKey(productId)) {
             return items.get(productId);

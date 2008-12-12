@@ -18,7 +18,7 @@ import fr.dauphine.ecommerce.service.exceptions.CartException;
  */
 public class CartServiceImpl implements CartService {
 
-    private StockService stockService;
+    private StockService stockService = new StockServiceImpl();
 
     public Cart refreshCart(Cart cart) {
 
@@ -47,6 +47,7 @@ public class CartServiceImpl implements CartService {
             cartItem.setQuantityStock(productStock.getQuantity());
             cart.getItems().put(productId, cartItem);
         }
+        
         return cart;
     }
 
