@@ -10,7 +10,7 @@ import fr.dauphine.ecommerce.model.CartItem;
 import fr.dauphine.ecommerce.model.ProductStock;
 import fr.dauphine.ecommerce.service.CatalogService;
 import fr.dauphine.ecommerce.service.StockService;
-import fr.dauphine.ecommerce.service.exceptions.CartException;
+import fr.dauphine.ecommerce.exceptions.CartException;
 import java.util.List;
 
 /**
