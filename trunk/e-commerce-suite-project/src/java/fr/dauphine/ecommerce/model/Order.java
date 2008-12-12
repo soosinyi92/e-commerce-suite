@@ -5,10 +5,27 @@
 
 package fr.dauphine.ecommerce.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author DELL
  */
 public class Order {
 
+    private List<OrderItem> items;
+
+    public Order() {
+        items = new ArrayList<OrderItem>();
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
+    
 }
