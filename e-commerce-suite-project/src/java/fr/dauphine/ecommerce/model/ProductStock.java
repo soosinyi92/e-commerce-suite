@@ -9,6 +9,6 @@ package fr.dauphine.ecommerce.model;
  *
  * @author DELL
  */
-public class StockItem {
+public class ProductStock {
 
 }
