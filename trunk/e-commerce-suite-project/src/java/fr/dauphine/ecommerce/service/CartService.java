@@ -14,5 +14,7 @@ import fr.dauphine.ecommerce.model.Cart;
 public interface CartService {
 
     public Cart refreshCart(Cart cart);
+    public Cart addToCart(Cart cart, Long productId);
+    public Cart removeFromCart(Cart cart, Long productId);
 
 }

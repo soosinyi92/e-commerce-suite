@@ -18,4 +18,12 @@ public class CartServiceImpl implements CartService {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public Cart addToCart(Cart cart, Long productId) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Cart removeFromCart(Cart cart, Long productId) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
