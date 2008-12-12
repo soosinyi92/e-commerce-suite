@@ -9,11 +9,17 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World! Amokrane</h1>
-    </body>
+  <head>
+    <title>Site d'achats en Ligne des albums</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  
+  <frameset cols="250px, *" border="2px">
+      <frame src="menu.jsp" noresize scrolling="no" name="menu" />
+      <frameset rows="80px, *" border="2px">
+          <frame src="top.jsp" name="top" noresize scrolling="no" />
+          <frame src="home.jsp" name="main" />
+      </frameset>
+  </frameset>
 </html>
+
