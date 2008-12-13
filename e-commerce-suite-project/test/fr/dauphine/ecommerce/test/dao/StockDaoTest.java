@@ -8,6 +8,7 @@ package fr.dauphine.ecommerce.test.dao;
 import fr.dauphine.ecommerce.dao.StockDao;
 import fr.dauphine.ecommerce.dao.impl.StockDaoJdbcImpl;
 import fr.dauphine.ecommerce.model.ProductStock;
+import java.util.List;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.junit.After;
@@ -59,12 +60,20 @@ public class StockDaoTest {
     // The methods must be annotated with annotation @Test. For example:
     //
 
+
     @Test
     public void hello() {
         ProductStock pStock= stockDao.getProductStock(1L);
-        assertEquals(new Integer(30),pStock.getQuantity());
-        assertEquals("prod1",pStock.getProduct().getName());
+        assertEquals(new Integer(8),pStock.getQuantity());
+        assertEquals("album1",pStock.getProduct().getName());
 
+    }
+    @Test
+    public void testSearch (){
+      List<ProductStock> list = stockDao.searchProductStock();
+      stockDao.updateProductStockQuantity(1L, 8);
+      assertEquals(new Integer(8),list.get(0).getQuantity());
+      assertEquals(3,list.size());
     }
 
 }
