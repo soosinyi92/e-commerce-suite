@@ -8,6 +8,8 @@ package fr.dauphine.ecommerce.test.dao;
 import fr.dauphine.ecommerce.dao.StockDao;
 import fr.dauphine.ecommerce.dao.impl.StockDaoJdbcImpl;
 import fr.dauphine.ecommerce.model.ProductStock;
+import javax.sql.DataSource;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,7 +39,16 @@ public class StockDaoTest {
 
     @Before
     public void setUp() {
-        stockDao = new StockDaoJdbcImpl();
+
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("sun.jdbc.odbc.JdbcOdbcDriver");
+        dataSource.setUrl("jdbc:odbc:eCommerce");
+        dataSource.setDefaultAutoCommit(true);
+        DataSource ds = dataSource;
+        
+        StockDaoJdbcImpl stockDaoJdbc = new StockDaoJdbcImpl();
+        stockDaoJdbc.setDataSource(ds);
+        stockDao=stockDaoJdbc;
     }
 
     @After
