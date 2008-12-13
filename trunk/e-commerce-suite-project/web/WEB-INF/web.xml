@@ -24,6 +24,10 @@
         <servlet-name>CartRemoveServlet</servlet-name>
         <servlet-class>fr.dauphine.ecommerce.servlet.CartRemoveServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderConfirmationServlet</servlet-name>
+        <servlet-class>fr.dauphine.ecommerce.servlet.OrderConfirmationServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogServlet</servlet-name>
         <url-pattern>/catalog</url-pattern>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>CartRemoveServlet</servlet-name>
         <url-pattern>/remove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderConfirmationServlet</servlet-name>
+        <url-pattern>/orderConfirmation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

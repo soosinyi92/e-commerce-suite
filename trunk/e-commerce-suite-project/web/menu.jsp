@@ -27,7 +27,7 @@
         <a href="panier" target="main"><img border="0" src="boutons/panier.gif" /></a>
         <br/><br/>
 
-        AutoUpdated
+        AutoUpdated<br/>
         <% if (cart.isCanOrder()) { %>
             <a href="order" target="main"><img border="0" src="boutons/facturation.gif" /></a>
         <% } else { %>
