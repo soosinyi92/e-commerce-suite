@@ -61,7 +61,7 @@ public class StockDaoMockImpl implements StockDao {
     
     public void updateProductStockQuantity(Long productId, Integer quantity) {
         ProductStock productStock = db.get(productId);
-        Integer newQuantity = productStock.getQuantity() - quantity;
+        Integer newQuantity = /*productStock.getQuantity() - */quantity;
         productStock.setQuantity(newQuantity);
     }
     

@@ -18,5 +18,6 @@ public interface CartService {
     public boolean validateCart(Cart cart);
     public Cart addToCart(Cart cart, Long productId) throws CartException;
     public Cart removeFromCart(Cart cart, Long productId) throws CartException;
-
+    public Cart emptyCart(Cart cart);
+    
 }

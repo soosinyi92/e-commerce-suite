@@ -6,28 +6,34 @@
 package fr.dauphine.ecommerce.servlet;
 
 import fr.dauphine.ecommerce.model.Cart;
+import fr.dauphine.ecommerce.model.Order;
 import fr.dauphine.ecommerce.service.CartService;
+import fr.dauphine.ecommerce.service.OrderService;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CartServlet extends HttpServlet {
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class OrderConfirmationServlet extends HttpServlet {
+   
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        OrderService orderService = (OrderService)getServletContext().getAttribute("orderService");
         CartService cartService = (CartService)getServletContext().getAttribute("cartService");
-
+        
         Cart cart = Utils.getCart(request.getSession());
-        //boolean canOrder = orderService.validateCart(cart);
-        cartService.refreshCart(cart);
+        //Order order = orderService.getOrderFromCart(cart);
         
-        request.setAttribute("cart", cart);
+        Order order = orderService.order(cart);
+        cartService.emptyCart(cart);
+        request.setAttribute("order", order);
         
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/cart.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/orderProcessed.jsp");
         rd.forward(request, response);
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
