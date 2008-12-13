@@ -6,6 +6,7 @@
 package fr.dauphine.ecommerce.dao;
 
 import fr.dauphine.ecommerce.model.Order;
+import fr.dauphine.ecommerce.model.Order;
 
 /**
  *
