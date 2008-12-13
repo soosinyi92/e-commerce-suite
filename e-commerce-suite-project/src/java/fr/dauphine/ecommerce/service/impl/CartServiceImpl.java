@@ -18,8 +18,11 @@ import fr.dauphine.ecommerce.exceptions.CartException;
  */
 public class CartServiceImpl implements CartService {
 
-    private StockService stockService = new StockServiceImpl();
-
+    private StockService stockService;
+    public void setStockService(StockService stockService) {
+        this.stockService = stockService;
+    }
+    
     public Cart refreshCart(Cart cart) {
 
         return null;
