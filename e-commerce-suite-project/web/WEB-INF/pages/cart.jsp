@@ -57,5 +57,10 @@
         <% } else { %>
             <span>Panier vide</span>
         <% } %>
+        <br/>
+
+        <a href="order" target="main"><img border="0" src="boutons/facturation.gif" /></a>
+        <br/><br/>
+        
     </body>
 </html>
