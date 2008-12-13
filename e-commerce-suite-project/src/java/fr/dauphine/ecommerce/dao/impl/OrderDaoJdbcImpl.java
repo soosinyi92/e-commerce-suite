@@ -35,13 +35,13 @@ public class OrderDaoJdbcImpl implements OrderDao {
     public void addOrderItem (Integer Order_Id, OrderItem item) throws SQLException{
 
        Connection conn = dataSource.getConnection();
-       String queryInsert = "insert into Order_Item values (?,?,?,?)";
+       String queryInsert = "insert into Order_Items values (?,?,?,?)";
        PreparedStatement ps = conn.prepareStatement(queryInsert);
        ps.setInt(1, Order_Id);
        ps.setString(2,item.getProduct().getId()+"");
        ps.setInt(3, item.getQuantity());
        ps.setDouble(4, item.getProduct().getPrice());
-       ps.executeQuery();
+       ps.executeUpdate();
 
     }
 
@@ -50,17 +50,24 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
 
             Connection conn = dataSource.getConnection();
-            String queryInsert = "insert into Order (Date_Order) values (?)";
+            String queryInsert = "insert into [Order](Date_Order) values (?)";
             PreparedStatement ps1 = conn.prepareStatement(queryInsert);
-            ps1.setDate(0, new java.sql.Date(System.currentTimeMillis()));
+            ps1.setDate(1, new java.sql.Date(System.currentTimeMillis()));
             ps1.executeUpdate();
 
             ResultSet rs2 ;
-            String querySelect = "select count(Order_Id) from Order";
+            String querySelect = "select max(Order_Id) as nb from [Order]";
             Statement stm2 = conn.createStatement();
             rs2 = stm2.executeQuery(querySelect);
-            Integer nb = rs2.getInt(0);
+            rs2.next();
+            Integer nb = rs2.getInt("nb");
 
+            Integer size = order.getItems().size();
+            Integer i=0;
+            while (i<size){
+                addOrderItem(nb, order.getItems().get(i));
+                i++;
+            }
 
 
 
