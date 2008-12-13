@@ -59,7 +59,6 @@
         <% } %>
         <br/>
         
-        
         <% if (cart.isCanOrder()) { %>
             <a href="order" target="main"><img border="0" src="boutons/facturation.gif" /></a>
         <% } else { %>
