@@ -41,10 +41,9 @@ public class ECommerceListener implements ServletContextListener {
         StockDaoJdbcImpl stockDaoJdbc = new StockDaoJdbcImpl();
         stockDaoJdbc.setDataSource(dataSource);
         StockDaoMockImpl stockDaoMock = new StockDaoMockImpl();
-        stockDaoJdbc.setDataSource(dataSource);
         // Selected DAOs
-        StockDao stockDao = stockDaoJdbc;
-        //StockDao stockDao = stockDaoMock;
+        //StockDao stockDao = stockDaoJdbc;
+        StockDao stockDao = stockDaoMock;
 
         // Services
         CatalogServiceImpl catalogService = new CatalogServiceImpl();
