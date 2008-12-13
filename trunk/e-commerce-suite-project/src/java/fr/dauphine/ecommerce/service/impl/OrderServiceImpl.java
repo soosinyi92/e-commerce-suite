@@ -58,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
                 if (cartItem.getQuantity() > cartItem.getQuantityStock()) {
                     return false;
                 }
-            }
+            } 
             return true;
         }
         else {
