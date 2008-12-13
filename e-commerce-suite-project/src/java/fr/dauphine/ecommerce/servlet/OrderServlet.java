@@ -5,8 +5,10 @@
 
 package fr.dauphine.ecommerce.servlet;
 
+import fr.dauphine.ecommerce.model.Cart;
+import fr.dauphine.ecommerce.model.Order;
+import fr.dauphine.ecommerce.service.OrderService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 
 public class OrderServlet extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderService orderService = (OrderService)getServletContext().getAttribute("orderService");
         
+        Cart cart = Utils.getCart(request.getSession());
+        Order order = orderService.getOrderFromCart(cart);
+        
+        request.setAttribute("order", order);
         
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/order.jsp");
         rd.forward(request, response);

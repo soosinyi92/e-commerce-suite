@@ -17,6 +17,10 @@ public class OrderItem {
     public OrderItem() {
     }
 
+    public Double getTotalPrice() {
+        return quantity * product.getPrice();
+    }
+
     public Product getProduct() {
         return product;
     }
