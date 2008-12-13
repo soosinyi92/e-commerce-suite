@@ -58,8 +58,13 @@
             <span>Panier vide</span>
         <% } %>
         <br/>
-
-        <a href="order" target="main"><img border="0" src="boutons/facturation.gif" /></a>
+        
+        
+        <% if (cart.isCanOrder()) { %>
+            <a href="order" target="main"><img border="0" src="boutons/facturation.gif" /></a>
+        <% } else { %>
+            <img border="0" src="boutons/facturation.gif" style="filter:alpha(opacity=50); opacity: 0.5; -moz-opacity:0.5;" />
+        <% } %>
         <br/><br/>
         
     </body>
