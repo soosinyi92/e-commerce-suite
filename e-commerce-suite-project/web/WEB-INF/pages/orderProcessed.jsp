@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Commande</title>
+        <title>Commande Traitée</title>
     </head>
     <body>
         <%
@@ -23,7 +23,7 @@
         String plural = (size > 1 ? "s" : "");
         %>
 
-        <h1>Valider votre commande contenant <%=size%> article<%=plural%></h1>
+        <h1>Votre commande à été envoyée</h1>
         
         <% if (size > 0) { %>
             <table width="600px" border="0">
@@ -52,15 +52,13 @@
                 <%}%>
                 
             </table>
-        <% } else { %>
-            <span>Panier vide</span>
         <% } %>
         <br/>
 
         <span>Prix Total : <%=order.getTotalPrice()%></span>
         <br/><br/>
-        
-        <a href="orderConfirmation" target="main"><img border="0" src="boutons/facturation.gif" /></a>
+
+        <span>Votre commande à été enregistrée, vous allez recevoir les articles dans un délai de 5 jours.</span>
         <br/>
     </body>
 </html>
