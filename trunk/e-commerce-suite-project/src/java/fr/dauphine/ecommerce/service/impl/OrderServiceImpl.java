@@ -11,7 +11,6 @@ import fr.dauphine.ecommerce.model.CartItem;
 import fr.dauphine.ecommerce.model.Order;
 import fr.dauphine.ecommerce.model.OrderItem;
 import fr.dauphine.ecommerce.model.ProductStock;
-import fr.dauphine.ecommerce.service.CartService;
 import fr.dauphine.ecommerce.service.OrderService;
 import fr.dauphine.ecommerce.service.StockService;
 

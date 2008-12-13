@@ -24,6 +24,12 @@ public class CartServiceImpl implements CartService {
     }
     
     public Cart refreshCart(Cart cart) {
+        for (CartItem cartItem : cart.getItems().values()) {
+            Long productId = cartItem.getProduct().getId();
+            ProductStock productStock = stockService.getProductStock(productId);
+            Integer quantity = productStock.getQuantity();
+            cartItem.setQuantityStock(quantity);
+        }
         validateCart(cart);
         return cart;
     }
@@ -34,15 +40,19 @@ public class CartServiceImpl implements CartService {
             for (CartItem cartItem : cart.getItems().values()) {
                 if (cartItem.getQuantity() > cartItem.getQuantityStock()) {
                     valid = false;
+                    cart.setCanOrder(valid);
+                    return valid;
                 }
             }
             valid = true;
+            cart.setCanOrder(valid);
+            return valid;
         }
         else {
             valid = false;
+            cart.setCanOrder(valid);
+            return valid;
         }
-        cart.setCanOrder(valid);
-        return valid;
     }
 
     protected boolean isProductInCart(Cart cart, Long productId) {
@@ -80,6 +90,12 @@ public class CartServiceImpl implements CartService {
                 cart.getItems().remove(productId);
             }
         }
+        validateCart(cart);
+        return cart;
+    }
+
+    public Cart emptyCart(Cart cart) {
+        cart.getItems().clear();
         validateCart(cart);
         return cart;
     }
