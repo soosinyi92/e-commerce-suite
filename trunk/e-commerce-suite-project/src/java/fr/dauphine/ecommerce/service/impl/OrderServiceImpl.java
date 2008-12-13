@@ -30,13 +30,7 @@ public class OrderServiceImpl implements OrderService {
     public void setStockService(StockService stockService) {
         this.stockService = stockService;
     }
-
-    private CartService cartService;
-    public void setCartService(CartService cartService) {
-        this.cartService = cartService;
-    }
-
-
+    
     public Order getOrderFromCart(Cart cart) {
         Order order = new Order();
         
@@ -49,23 +43,7 @@ public class OrderServiceImpl implements OrderService {
         
         return order;
     }
-
-    public boolean validateCart(Cart cart) {
-        cart = cartService.refreshCart(cart);
-
-        if (cart.getItems().size() > 0) {
-            for (CartItem cartItem : cart.getItems().values()) {
-                if (cartItem.getQuantity() > cartItem.getQuantityStock()) {
-                    return false;
-                }
-            } 
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
+    
     public Order order(Cart cart) {
         Order order = getOrderFromCart(cart);
         
@@ -83,7 +61,5 @@ public class OrderServiceImpl implements OrderService {
         
         return order;
     }
-
-    //stockService.updateProductStockQuantity(productId, 1);
     
 }

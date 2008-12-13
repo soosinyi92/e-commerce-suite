@@ -6,6 +6,7 @@
 package fr.dauphine.ecommerce.servlet;
 
 import fr.dauphine.ecommerce.model.Cart;
+import fr.dauphine.ecommerce.service.OrderService;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 public class CartServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         Cart cart = Utils.getCart(request.getSession());
+        //boolean canOrder = orderService.validateCart(cart);
         
         request.setAttribute("cart", cart);
         
