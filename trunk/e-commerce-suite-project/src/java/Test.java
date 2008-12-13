@@ -25,8 +25,16 @@ Connection conn= DriverManager.getConnection(url);
 ResultSet resultat= null;
 Statement stm = conn.createStatement();
 resultat=stm.executeQuery("select * from Product");
-System.out.print("id du produit:"+resultat.getString("Id"));
+while(resultat.next())
+{
+System.out.println("id du produit: "+resultat.getString("Id"));
+}
+
+
 //System.out.print(resultat.getInt(2));
+resultat.close();
+stm.close();
+conn.close();
 
 
 }
