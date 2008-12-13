@@ -5,7 +5,10 @@
 
 package fr.dauphine.ecommerce.listener;
 
+import fr.dauphine.ecommerce.dao.OrderDao;
 import fr.dauphine.ecommerce.dao.StockDao;
+import fr.dauphine.ecommerce.dao.impl.OrderDaoJdbcImpl;
+import fr.dauphine.ecommerce.dao.impl.OrderDaoMockImpl;
 import fr.dauphine.ecommerce.dao.impl.StockDaoJdbcImpl;
 import fr.dauphine.ecommerce.dao.impl.StockDaoMockImpl;
 import fr.dauphine.ecommerce.service.CartService;
@@ -41,10 +44,15 @@ public class ECommerceListener implements ServletContextListener {
         StockDaoJdbcImpl stockDaoJdbc = new StockDaoJdbcImpl();
         stockDaoJdbc.setDataSource(dataSource);
         StockDaoMockImpl stockDaoMock = new StockDaoMockImpl();
+        
+        OrderDaoJdbcImpl orderDaoJdbc = new OrderDaoJdbcImpl();
+        OrderDaoMockImpl orderDaoMock = new OrderDaoMockImpl();
+
         // Selected DAOs
         //StockDao stockDao = stockDaoJdbc;
         StockDao stockDao = stockDaoMock;
-
+        OrderDao orderDao = orderDaoMock;
+        
         // Services
         CatalogServiceImpl catalogService = new CatalogServiceImpl();
         StockServiceImpl stockService = new StockServiceImpl();
@@ -54,6 +62,8 @@ public class ECommerceListener implements ServletContextListener {
         stockService.setStockDao(stockDao);
         catalogService.setStockService(stockService);
         cartService.setStockService(stockService);
+        orderService.setStockService(stockService);
+        orderService.setOrderDao(orderDao);
         
         // Put in Application Scope
         sce.getServletContext().setAttribute("catalogService", (CatalogService)catalogService);
