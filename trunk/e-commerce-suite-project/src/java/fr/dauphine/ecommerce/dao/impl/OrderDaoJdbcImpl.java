@@ -6,7 +6,7 @@
 package fr.dauphine.ecommerce.dao.impl;
 
 import fr.dauphine.ecommerce.dao.OrderDao;
-import fr.dauphine.ecommerce.model.Cart;
+import fr.dauphine.ecommerce.model.Order;
 
 /**
  *
@@ -14,7 +14,7 @@ import fr.dauphine.ecommerce.model.Cart;
  */
 public class OrderDaoJdbcImpl implements OrderDao {
 
-    public void addOrder(Cart pan) {
+    public void addOrder(Order order) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

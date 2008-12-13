@@ -5,14 +5,14 @@
 
 package fr.dauphine.ecommerce.dao;
 
-import fr.dauphine.ecommerce.model.Cart;
+import fr.dauphine.ecommerce.model.Order;
 
 /**
  *
  * @author adm
  */
 public interface OrderDao {
-    public void addOrder(Cart pan);
+    public void addOrder(Order order);
    
 
 }
