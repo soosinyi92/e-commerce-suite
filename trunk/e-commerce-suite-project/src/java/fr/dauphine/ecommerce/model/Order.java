@@ -27,5 +27,14 @@ public class Order {
     public void setItems(List<OrderItem> items) {
         this.items = items;
     }
-    
+
+    public Double getTotalPrice() {
+        Double totalPrice = 0D;
+
+        for (OrderItem item : items) {
+            totalPrice += item.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
 }

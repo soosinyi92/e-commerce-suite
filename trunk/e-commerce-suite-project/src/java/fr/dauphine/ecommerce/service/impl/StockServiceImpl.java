@@ -30,7 +30,7 @@ public class StockServiceImpl implements StockService {
     }
 
     public void updateProductStockQuantity(Long productId, Integer quantity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        stockDao.updateProductStockQuantity(productId, quantity);
     }
 
 }
