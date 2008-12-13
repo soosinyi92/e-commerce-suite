@@ -6,9 +6,7 @@
 package fr.dauphine.ecommerce.model;
 
 import fr.dauphine.ecommerce.exceptions.CartException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,9 +16,11 @@ import java.util.Map;
 public class Cart {
 
     private Map<Long, CartItem> items;
-
+    private boolean canOrder = false;
+    
     public Cart() {
         items = new HashMap<Long, CartItem>();
+        canOrder = false;
     }
 
     public Map<Long, CartItem> getItems() {
@@ -48,5 +48,13 @@ public class Cart {
     public void setItems(Map<Long, CartItem> items) {
         this.items = items;
     }
-
+    
+    public boolean isCanOrder() {
+        return canOrder;
+    }
+    
+    public void setCanOrder(boolean canOrder) {
+        this.canOrder = canOrder;
+    }
+    
 }

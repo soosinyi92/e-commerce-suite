@@ -15,6 +15,7 @@ import fr.dauphine.ecommerce.exceptions.CartException;
 public interface CartService {
 
     public Cart refreshCart(Cart cart);
+    public boolean validateCart(Cart cart);
     public Cart addToCart(Cart cart, Long productId) throws CartException;
     public Cart removeFromCart(Cart cart, Long productId) throws CartException;
 

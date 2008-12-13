@@ -16,6 +16,5 @@ public interface OrderService {
 
     public Order getOrderFromCart(Cart cart);
     public Order order(Cart cart);
-    public boolean validateCart(Cart cart);
     
 }
