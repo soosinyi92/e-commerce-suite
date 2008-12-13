@@ -6,8 +6,6 @@
 package fr.dauphine.ecommerce.service.impl;
 
 import fr.dauphine.ecommerce.dao.StockDao;
-import fr.dauphine.ecommerce.dao.impl.StockDaoJdbcImpl;
-import fr.dauphine.ecommerce.dao.impl.StockDaoMockImpl;
 import fr.dauphine.ecommerce.model.ProductStock;
 import fr.dauphine.ecommerce.service.StockService;
 import java.util.List;
@@ -18,7 +16,10 @@ import java.util.List;
  */
 public class StockServiceImpl implements StockService {
 
-    private StockDao stockDao = new StockDaoMockImpl();
+    private StockDao stockDao;
+    public void setStockDao(StockDao stockDao) {
+        this.stockDao = stockDao;
+    }
 
     public List<ProductStock> searchProductStock() {
         return stockDao.searchProductStock();

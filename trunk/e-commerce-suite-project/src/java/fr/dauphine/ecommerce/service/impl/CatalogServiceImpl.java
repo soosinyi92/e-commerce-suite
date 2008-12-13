@@ -19,8 +19,11 @@ import java.util.List;
  */
 public class CatalogServiceImpl implements CatalogService {
 
-    private StockService stockService = new StockServiceImpl();
-
+    private StockService stockService;
+    public void setStockService(StockService stockService) {
+        this.stockService = stockService;
+    }
+    
     public List<ProductStock> searchCatalogue(Cart cart) {
         // Get Stock articles
         List<ProductStock> articles = stockService.searchProductStock();
