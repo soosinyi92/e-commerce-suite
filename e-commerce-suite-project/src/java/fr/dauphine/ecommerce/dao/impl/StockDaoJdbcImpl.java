@@ -46,6 +46,7 @@ public class StockDaoJdbcImpl implements StockDao {
         ProductStock productStock = new ProductStock();
         productStock.setProduct(product);
         productStock.setQuantity(quantity);
+
         return productStock;
     }
 
@@ -62,15 +63,25 @@ public class StockDaoJdbcImpl implements StockDao {
 
             //charger les données dans les objets du model
             if (rs.next()) {
-                return loadProduct(rs);
+                ProductStock productStock = loadProduct(rs);
+                
+                rs.close();
+                conn.close();
+                return productStock;
+
             } else {
+                
+                rs.close();
+                conn.close();
                 return null;
             }
+
         }
         catch (SQLException ex) {
             Logger.getLogger(StockDaoJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+
     }
 
     public List<ProductStock> searchProductStock() {
@@ -91,7 +102,10 @@ public class StockDaoJdbcImpl implements StockDao {
                 list.add(loadProduct(rs));
                 
             }
-        return list;
+          
+          rs.close();
+          conn.close();
+          return list;
         }
         catch (SQLException ex) {
             Logger.getLogger(StockDaoJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,6 +121,8 @@ public class StockDaoJdbcImpl implements StockDao {
             ps.setInt(1, quantity);
             ps.setString(2,productId+"");
             ps.executeUpdate();
+            
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(StockDaoJdbcImpl.class.getName()).log(Level.SEVERE, null, ex);
         }

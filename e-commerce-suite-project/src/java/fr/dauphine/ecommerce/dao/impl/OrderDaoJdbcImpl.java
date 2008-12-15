@@ -32,9 +32,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
 
-    public void addOrderItem (Integer Order_Id, OrderItem item) throws SQLException{
+    public void addOrderItem (Integer Order_Id, OrderItem item, Connection conn) throws SQLException{
 
-       Connection conn = dataSource.getConnection();
+       
        String queryInsert = "insert into Order_Items values (?,?,?,?)";
        PreparedStatement ps = conn.prepareStatement(queryInsert);
        ps.setInt(1, Order_Id);
@@ -42,6 +42,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
        ps.setInt(3, item.getQuantity());
        ps.setDouble(4, item.getProduct().getPrice());
        ps.executeUpdate();
+       
+       
 
     }
 
@@ -54,21 +56,22 @@ public class OrderDaoJdbcImpl implements OrderDao {
             PreparedStatement ps1 = conn.prepareStatement(queryInsert);
             ps1.setDate(1, new java.sql.Date(System.currentTimeMillis()));
             ps1.executeUpdate();
+            
 
-            ResultSet rs2 ;
+            ResultSet rs2;
             String querySelect = "select max(Order_Id) as nb from [Order]";
             Statement stm2 = conn.createStatement();
             rs2 = stm2.executeQuery(querySelect);
             rs2.next();
             Integer nb = rs2.getInt("nb");
-
+            rs2.close();
             Integer size = order.getItems().size();
             Integer i=0;
             while (i<size){
-                addOrderItem(nb, order.getItems().get(i));
+                addOrderItem(nb, order.getItems().get(i),conn);
                 i++;
             }
-
+            conn.close();
 
 
 
